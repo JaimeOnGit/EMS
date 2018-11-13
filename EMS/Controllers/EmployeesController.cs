@@ -17,12 +17,16 @@ namespace EMS.Controllers
             var employees = await DocumentDBRepo<Employee>.GetItemsAsync(e => e.FirstName!="");
             return View(employees);
         }
-        
+
 
         // GET: Employees/Details/5
-        public ActionResult Details(int id)
+        [ActionName("Details")]
+        public async Task<ActionResult> DetailsAsync(string id)
         {
-            return View();
+
+            Employee emp = await DocumentDBRepo<Employee>.GetIEmpAsync(id);
+            return View(emp);
+            
         }
 
         // GET: Employees/Create
@@ -32,19 +36,19 @@ namespace EMS.Controllers
         }
 
         // POST: Employees/Create
-        [HttpPost]
-        [ActionName("Create")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Name,Description,Completed")] Item item)
-        {
-            if (ModelState.IsValid)
-            {
-                await DocumentDBRepo<Employee>.CreateItemAsync(item);
-                return RedirectToAction("Index");
-            }
+        //[HttpPost]
+        //[ActionName("Create")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> CreateAsync([Bind(Include = "Id,Name,Description,Completed")] Item item)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        await DocumentDBRepo<Employee>.CreateItemAsync(item);
+        //        return RedirectToAction("Index");
+        //    }
 
-            return View(item);
-        }
+        //    return View(item);
+        //}
 
         // GET: Employees/Edit/5
         public ActionResult Edit(int id)

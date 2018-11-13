@@ -1,0 +1,72 @@
+﻿@model EMS.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecondSurname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecondSurname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeDocuments)
+        </dt>
+
+        @foreach (var item in Model.EmployeeDocuments)
+        {
+        <dd>
+            <a href="@item.Uri" target="_blank">@item.DocType</a>
+            
+
+        </dd>
+        }
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

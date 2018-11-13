@@ -29,6 +29,11 @@ namespace EMS.Models
         [JsonProperty(PropertyName ="documents")]
         public List<Document>EmployeeDocuments{ get; set; }
 
+        public Employee()
+        {
+            EmployeeDocuments = new List<Document>();
+        }
+
                           
     }
 }
